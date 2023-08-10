@@ -1,3 +1,7 @@
 export default function MyWeek() {
-    return <h1>This is my week</h1>
+    return (
+        <section>
+            <h1 className="rich-black font-semibold text-2xl">My Week</h1>
+        </section>
+    )
 }

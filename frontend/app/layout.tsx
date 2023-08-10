@@ -8,17 +8,19 @@ export default function RootLayout({
 }) {
     return (
       <html lang="en">
-        <body className="blush-bg flex">
 
-          <NavBar />
+          <body className="blush-bg flex">
 
-          <main className="px-4 sm:px-6 md:px-10 py-8">
-            
-            {children}
+              <NavBar />
 
-          </main>
-            
-        </body>
+              <main className="px-6 md:px-8 py-8">
+                
+                  {children}
+
+              </main>
+              
+          </body>
+
       </html>
     )
 }

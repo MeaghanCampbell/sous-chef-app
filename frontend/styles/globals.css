@@ -53,7 +53,6 @@ input[type='checkbox'] {
     position: relative;
     outline: none;
 }
-
 input[type='checkbox']:checked {
     -webkit-appearance: none;
     appearance: none;
@@ -62,6 +61,40 @@ input[type='checkbox']:checked {
     border-radius: 999px;
     border: none;
 }
+.recipe-divider {
+    border-bottom: 1px solid #FDFFFC;
+}
+/* nav styles */
+.open {
+    width: 185px; 
+} 
+.closed {
+    width: 75px;
+}
+.closed span {
+    display: none;
+}
+nav {
+    transition: width 0.3s ease; 
+}
+.nav-title {
+    white-space: nowrap;
+}
+.icon {
+    min-width: 1.75em;
+}
+.btn {
+    background-color: #0C7489;
+    color: #F1E5E5;
+    padding: .5em 1em;
+    border-radius: .2em;
+    width: 100%;
+}
+.btn:hover {
+    background-color: #119DA4;
+}
+
+
   
 
   
