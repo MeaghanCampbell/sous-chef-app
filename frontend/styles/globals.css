@@ -64,18 +64,23 @@ input[type='checkbox']:checked {
 .recipe-divider {
     border-bottom: 1px solid #FDFFFC;
 }
+.recipe-top-divider {
+    border-top: 1px solid #FDFFFC;
+}
 /* nav styles */
 .open {
     width: 185px; 
 } 
 .closed {
     width: 75px;
+    min-width:75px;
 }
 .closed span {
     display: none;
 }
 nav {
     transition: width 0.3s ease; 
+    min-width:75px;
 }
 .nav-title {
     white-space: nowrap;
@@ -87,11 +92,17 @@ nav {
     background-color: #0C7489;
     color: #F1E5E5;
     padding: .5em 1em;
-    border-radius: .2em;
+    border-radius: .75rem;
     width: 100%;
 }
 .btn:hover {
     background-color: #119DA4;
+}
+.arrow-icon {
+    transition: transform 0.4s ease-in-out;
+}
+.arrow-icon.rotated {
+    transform: rotate(180deg);
 }
 
 
