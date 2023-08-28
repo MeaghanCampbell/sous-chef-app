@@ -1,12 +1,20 @@
 const express = require('express');
 const usersController = require('../controllers/userController');
+const asyncHandler = require('../middleware/asyncHandler');
 const router = express.Router();
 
-router.post('/create', (req, res, next) => {
-    console.log("Attempting to create user");
-    next();
-}, usersController.createUser);
+// login a user
+router.post('/login', asyncHandler(usersController.login));
+// Add a user
+router.post('/create', asyncHandler(usersController.createUser));
 
-// ... other user routes
+// Get all users
+router.get('/', asyncHandler(usersController.getAllUsers));
+
+// Get one user by ID
+router.get('/:id', asyncHandler(usersController.getUserById));
+
+// Delete a user
+router.delete('/:id', asyncHandler(usersController.deleteUser));
 
 module.exports = router;

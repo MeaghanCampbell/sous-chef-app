@@ -1,6 +1,7 @@
 'use strict';
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
+const bcrypt = require('bcryptjs');
 
 class User extends Model {
     /**
@@ -29,6 +30,10 @@ User.init({
         allowNull: false,
         validate: {
             len: [4]
+        },
+        set(value) {
+            const hash = bcrypt.hashSync(value, 10);
+            this.setDataValue('password', hash);
         }
     },
 }, 

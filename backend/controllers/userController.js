@@ -1,10 +1,47 @@
 const { User } = require('../models')
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
+//login
+exports.login = async (req, res) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ where: { username } });
+    if (user && bcrypt.compareSync(password, user.password)) {
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
+    } else {
+        res.status(401).json({ message: 'Invalid username or password' });
+    }
+};
+
+// create a user
 exports.createUser = async (req, res) => {
-    try {
-        const user = await User.create(req.body);
-        res.status(201).json(user);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+    const user = await User.create(req.body);
+    res.status(201).json(user);
+};
+
+// get all users
+exports.getAllUsers = async (req, res) => {
+    const users = await User.findAll();
+    res.json(users);
+};
+
+// get user by id
+exports.getUserById = async (req, res) => {
+    const user = await User.findByPk(req.params.id);
+    if (user == null) {
+        return res.status(404).json({ message: 'Cannot find user' });
+    }
+    res.json(user);
+};
+
+// delete a user
+exports.deleteUser = async (req, res) => {
+    const user = await User.findByPk(req.params.id);
+    if (user) {
+        await user.destroy();
+        res.json({ message: 'Deleted User' });
+    } else {
+        res.status(404).json({ message: 'Cannot find user' });
     }
 };
