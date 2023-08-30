@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { User, Recipe } = require('../models')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -22,13 +22,32 @@ exports.createUser = async (req, res) => {
 
 // get all users
 exports.getAllUsers = async (req, res) => {
-    const users = await User.findAll();
+    const users = await User.findAll({
+        attributes: { exclude: ['password'] },
+        include: [
+            {
+                model: Recipe,
+                attributes: ['id', 'title', 'category', 'steps']
+            }
+        ]
+    });
     res.json(users);
 };
 
 // get user by id
 exports.getUserById = async (req, res) => {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findOne({
+        attributes: { exclude: ['password'] },
+        where: {
+            id: req.params.id
+        },
+        include: [
+            {
+                model: Recipe,
+                attributes: ['id', 'title', 'category', 'steps']
+            }
+        ]
+    });
     if (user == null) {
         return res.status(404).json({ message: 'Cannot find user' });
     }

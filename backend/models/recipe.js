@@ -24,6 +24,10 @@ Recipe.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    category: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     steps: {
         type: DataTypes.JSON
     },
@@ -37,7 +41,8 @@ Recipe.init({
 }, 
 {
     sequelize,
-    modelName: 'recipe',
+    timestamps: false,
+    modelName: 'recipe'
 });
 
 
