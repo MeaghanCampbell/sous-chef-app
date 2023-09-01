@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
+const myWeekRoutes = require('./routes/myWeekRoutes')
 const authenticate = require('./middleware/authenticate');
 const app = express();
 const port = 3001; 
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(authenticate);
 app.use('/users', userRoutes);
 app.use('/recipes', recipeRoutes);
+app.use('/my-week', myWeekRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello from the backend!');

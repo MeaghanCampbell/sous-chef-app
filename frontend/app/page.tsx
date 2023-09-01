@@ -17,7 +17,10 @@ export default function Dashboard() {
 
     return (
         <section>
-            <h1 className="rich-black font-semibold text-2xl">My Cookbook</h1>
+            <div className="flex space-x-4 items-center cerulean font-semibold pb-2">
+                <h1 className="rich-black font-semibold text-2xl">My Cookbook</h1>
+                <a href="/add-recipe">Add a Recipe +</a>
+            </div>
             <Accordion data={accordionData} />
         </section>
     )

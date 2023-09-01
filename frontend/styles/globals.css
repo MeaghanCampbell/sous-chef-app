@@ -34,6 +34,10 @@
     color: #119DA4;
 }
 
+.cyan-border {
+    border: 1px solid #119DA4;
+}
+
 .cerulean-bg {
     background-color: #0C7489
 }
@@ -94,6 +98,13 @@ nav {
     padding: .5em 1em;
     border-radius: .75rem;
     width: 100%;
+}
+.plus-btn {
+    background-color: #0C7489;
+    color: #F1E5E5;
+}
+.plus-btn:hover {
+    background-color: #119DA4;
 }
 .btn:hover {
     background-color: #119DA4;

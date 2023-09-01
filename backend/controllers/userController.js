@@ -1,4 +1,4 @@
-const { User, Recipe } = require('../models')
+const { User, Recipe, MyWeek } = require('../models')
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
@@ -17,6 +17,7 @@ exports.login = async (req, res) => {
 // create a user
 exports.createUser = async (req, res) => {
     const user = await User.create(req.body);
+    await MyWeek.create({ user_id: user.id })
     res.status(201).json(user);
 };
 
