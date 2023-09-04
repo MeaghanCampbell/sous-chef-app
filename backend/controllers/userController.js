@@ -16,9 +16,22 @@ exports.login = async (req, res) => {
 
 // create a user
 exports.createUser = async (req, res) => {
-    const user = await User.create(req.body);
-    await MyWeek.create({ user_id: user.id })
-    res.status(201).json(user);
+    const { username, password } = req.body;
+
+    // Check if username already exists
+    const existingUser = await User.findOne({ where: { username } });
+    if (existingUser) {
+        return res.status(400).json({ error: 'Username already exists' });
+    }
+
+    // Create new user
+    try {
+        const user = await User.create({ username, password });
+        await MyWeek.create({ user_id: user.id });
+        res.status(201).json(user);
+    } catch (error) {
+        res.status(500).json({ error: 'Error creating user' });
+    }
 };
 
 // get all users

@@ -8,7 +8,7 @@ export default function Accordion({ data }) {
                 <AccordionItem key={index} title={item.title}>
                     {item.recipes.map((recipe, i) => (
                         <li key={i} className="recipe-divider py-3 font-semibold">
-                            <a href="">{recipe}</a>
+                            <a href={recipe.link}>{recipe.title}</a>
                         </li>
                     ))}
                 </AccordionItem>

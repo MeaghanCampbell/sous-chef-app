@@ -5,6 +5,7 @@ const userRoutes = require('./routes/userRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
 const myWeekRoutes = require('./routes/myWeekRoutes')
 const authenticate = require('./middleware/authenticate');
+const cors = require('cors'); 
 const app = express();
 const port = 3001; 
 const sequelize = require('./config/config')
@@ -18,6 +19,7 @@ sequelize.sync()
   console.error("Error syncing database:", error);
 });
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
