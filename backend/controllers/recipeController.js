@@ -39,6 +39,38 @@ exports.getUserRecipes = async (req, res) => {
     res.json(formattedRecipes);
 };
 
+exports.getRecipeById = async (req, res) => {
+    const recipeId = req.params.id;
+    const recipe = await Recipe.findOne({
+        where: { id: recipeId },
+        include: [
+            {
+                model: Ingredient,
+                through: {
+                    model: IngredientQuantity,
+                    attributes: ['quantity']
+                },
+                attributes: ['name']
+            }
+        ]
+    });
+
+    if (!recipe) {
+        return res.status(404).json({ message: 'Cannot find recipe' });
+    }
+
+    const formattedIngredients = recipe.Ingredients.map(ingredient => {
+        return {
+            name: ingredient.name,
+            quantity: ingredient.IngredientQuantity.quantity
+        };
+    });
+
+    // Return the recipe with the formatted ingredients
+    const formattedRecipe = { ...recipe.toJSON(), Ingredients: formattedIngredients };
+    res.json(formattedRecipe);
+};
+
 exports.updateRecipe = async (req, res) => {
     const { title, category, steps, ingredients } = req.body;
     const recipe = await Recipe.findByPk(req.params.id);

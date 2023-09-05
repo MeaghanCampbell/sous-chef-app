@@ -43,7 +43,7 @@ export default function Dashboard() {
                 if (category) {
                     category.recipes.push({
                         title: recipe.title,
-                        link: `/recipe/${recipe.id}`
+                        link: `/dashboard/recipe/${recipe.id}`
                     });
                 }
             });

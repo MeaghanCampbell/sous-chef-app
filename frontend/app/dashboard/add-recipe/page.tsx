@@ -2,8 +2,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation'
 
 export default function addRecipe() {
+
+    const router = useRouter();
+
     const [ingredients, setIngredients] = useState([{ quantity: '', name: '' }]);
     const [steps, setSteps] = useState(['']);
     const [title, setTitle] = useState('');
@@ -66,6 +70,7 @@ export default function addRecipe() {
             });
     
             console.log(response.data);
+            router.push('/dashboard'); // Redirect to dashboard page
         } catch (error) {
             console.error(error);
         }

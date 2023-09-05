@@ -21,7 +21,7 @@ export default function Login() {
         try {
             const user = { username, password };
             const response = await axios.post('http://localhost:3001/users/login', user);
-            Cookies.set('token', response.data.token);
+            Cookies.set('token', response.data.token, { expires: 1 });
             router.push('/dashboard');
         } catch (error) {
             setErrorMessage(error.response.data.message)

@@ -1,7 +1,10 @@
 // backend/controllers/myWeekController.js
 const MyWeek = require('../models/myWeek')
-const Recipe = require('../models/recipe')
 const MyWeekRecipe = require('../models/myWeekRecipe') // import the MyWeekRecipe model
+const Ingredient = require('../models/ingredient')
+const IngredientQuantity = require('../models/ingredientQuantity')
+const Recipe = require('../models/recipe')
+
 
 exports.addRecipeToMyWeek = async (req, res) => {
     const { recipeId } = req.body;
@@ -26,10 +29,33 @@ exports.getMyWeek = async (req, res) => {
     // Get the recipes in My Week
     const myWeekRecipes = await MyWeekRecipe.findAll({ where: { myWeekId: myWeek.id } });
     const recipeIds = myWeekRecipes.map(myWeekRecipe => myWeekRecipe.recipeId);
-    const recipes = await Recipe.findAll({ where: { id: recipeIds } });
+    const recipes = await Recipe.findAll({ 
+        where: { id: recipeIds },
+        include: [
+            {
+                model: Ingredient,
+                through: {
+                    model: IngredientQuantity,
+                    attributes: ['quantity']
+                },
+                attributes: ['name']
+            }
+        ]
+    });
 
-    if (recipes.length > 0) {
-        res.status(200).json({ recipes });
+    const formattedRecipes = recipes.map(recipe => {
+        const formattedIngredients = recipe.Ingredients.map(ingredient => {
+            return {
+                name: ingredient.name,
+                quantity: ingredient.IngredientQuantity.quantity
+            };
+        });
+        // Return the recipe with the formatted ingredients
+        return { ...recipe.toJSON(), Ingredients: formattedIngredients };
+    });
+
+    if (formattedRecipes.length > 0) {
+        res.status(200).json({ recipes: formattedRecipes });
     } else {
         res.status(400).json({ message: 'No recipes found in My Week' });
     }

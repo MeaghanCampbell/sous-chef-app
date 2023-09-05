@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 .baby-powder-bg {
     background-color: #FDFFFC;
@@ -73,11 +73,19 @@ input[type='checkbox']:checked {
 }
 /* nav styles */
 .open {
-    width: 185px; 
-} 
+    width: 185px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: width 0.5s;
+}
 .closed {
-    width: 75px;
-    min-width:75px;
+    width: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    transition: width 0.5s;
 }
 .closed span {
     display: none;
@@ -113,6 +121,9 @@ nav {
 }
 .arrow-icon.rotated {
     transform: rotate(180deg);
+}
+.grocery-checkbox {
+    min-width: 1.3em;
 }
 
 

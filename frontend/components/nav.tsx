@@ -8,9 +8,9 @@ export default function NavBar() {
     const [open, setOpen] = useState(false);
     
     return (
-        <nav className={`rich-black-bg blush min-h-screen ${open ? 'open' : 'closed'}`}>
+        <nav className={`rich-black-bg blush min-h-screen z-10 ${open ? 'open' : 'closed'}`}>
             <div className="mt-4 fixed">
-                <button className="hidden sm:block px-5 blush pt-4 pb-2" onClick={() => setOpen(!open)}>
+                <button className="px-5 blush pt-4 pb-2" onClick={() => setOpen(!open)}>
                     <svg className="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 50 50" width="30px" height="30px"><path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"/></svg>
                 </button>
                 <div>

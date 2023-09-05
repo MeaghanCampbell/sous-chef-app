@@ -22,7 +22,7 @@ export default function DashboardLayout({
         if (!token) {
             router.push('/');
         }
-    }, []);
+    },[]);
 
     return (
 
@@ -30,7 +30,7 @@ export default function DashboardLayout({
 
               <NavBar />
 
-              <div className="px-6 md:px-8 py-8 w-full max-w-4xl">
+              <div className="pl-24 md:pl-28 pr-6 md:pr-8 py-8 w-full max-w-4xl">
                 
                   {children}
 
