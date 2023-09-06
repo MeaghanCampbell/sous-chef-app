@@ -11,6 +11,7 @@ export default function RecipeOpen() {
     const router = useRouter();
     const [recipe, setRecipe] = useState(null);
     const [errorMessage, setErrorMessage] = useState('')
+    const [inProduction, setInProduction] = useState('')
 
     let recipeId = params.id
     const token = Cookies.get('token');
@@ -50,6 +51,13 @@ export default function RecipeOpen() {
         .catch(error => {
             console.error(error);
         });
+    }
+
+    const updateRecipe = () => {
+        setInProduction('Update Recipe is still in production. Check back later to use this feature.')
+        setTimeout(() => {
+            setInProduction('')
+        }, 6000);
     }
 
     const addRecipeToMyWeek = () => {
@@ -93,7 +101,10 @@ export default function RecipeOpen() {
                     <button onClick={addRecipeToMyWeek} className="font-semibold transition mb-3 btn">Add to My Week +</button>
                 </div>
                 <div className="pb-3">
-                    <button className="blush font-semibold transition bg-orange-500 hover:bg-orange-400 px-4 py-2 rounded-xl">Update Recipe</button>
+                    <div className="text-red-600 max-w-xs pb-1">
+                        {inProduction}
+                    </div>
+                    <button onClick={updateRecipe} className="blush font-semibold transition bg-orange-500 hover:bg-orange-400 px-4 py-2 rounded-xl mb-1">Update Recipe</button>
                 </div>
                 <div>
                     <button onClick={deleteRecipe} className="blush font-semibold transition bg-red-500 hover:bg-red-400 px-4 py-2 rounded-xl">Delete Recipe</button>
