@@ -54,7 +54,7 @@ export default function RecipeOpen() {
     }
 
     const updateRecipe = () => {
-        setInProduction('Update Recipe is still in production. Check back later to use this feature.')
+        setInProduction('Update Recipe is still in development. Check back later to use this feature.')
         setTimeout(() => {
             setInProduction('')
         }, 6000);
