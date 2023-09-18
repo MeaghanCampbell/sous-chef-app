@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import Accordion from '../../components/accordion'
 import { useRouter } from 'next/navigation'
 import axios from 'axios';
+import '../../axiosConfig'
 
 export default function Dashboard() {
 
@@ -31,7 +32,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const token = Cookies.get('token');
-        axios.get('http://localhost:3001/recipes', {
+        axios.get('/recipes', {
             headers: {
                 'Authorization': token
             }

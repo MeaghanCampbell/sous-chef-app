@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
+import '../../../axiosConfig'
 
 export default function MyWeek() {
 
@@ -12,7 +13,7 @@ export default function MyWeek() {
     useEffect(() => {
         const token = Cookies.get('token');
 
-        axios.get('http://localhost:3001/my-week', {
+        axios.get('/my-week', {
             headers: {
                 'Authorization': token
             }
@@ -28,7 +29,7 @@ export default function MyWeek() {
     const removeRecipe = (id) => {
         const token = Cookies.get('token');
 
-        axios.delete(`http://localhost:3001/my-week/remove/${id}`, {
+        axios.delete(`/my-week/remove/${id}`, {
             headers: {
                 'Authorization': token
             }

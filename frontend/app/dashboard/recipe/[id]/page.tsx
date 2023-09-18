@@ -19,7 +19,7 @@ export default function RecipeOpen() {
     useEffect(() => {
 
         if (recipeId) { // Make sure we have an id before fetching
-            axios.get(`http://localhost:3001/recipes/${recipeId}`, {
+            axios.get(`/recipes/${recipeId}`, {
                 headers: {
                     'Authorization': token
                 }
@@ -40,7 +40,7 @@ export default function RecipeOpen() {
 
     const deleteRecipe = () => {
 
-        axios.delete(`http://localhost:3001/recipes/${recipeId}`, {
+        axios.delete(`/recipes/${recipeId}`, {
             headers: {
                 'Authorization': token
             }
@@ -62,7 +62,7 @@ export default function RecipeOpen() {
 
     const addRecipeToMyWeek = () => {
 
-        axios.post(`http://localhost:3001/my-week/add`, { recipeId: recipeId }, {
+        axios.post(`/my-week/add`, { recipeId: recipeId }, {
             headers: {
                 'Authorization': token
             }

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
+import '../../axiosConfig'
 
 export default function SignUp() {
     const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ export default function SignUp() {
         }
         try {
             const user = { username, password };
-            const response = await axios.post('http://localhost:3001/users/create', user);
+            const response = await axios.post('/users/create', user);
             console.log(response.data)
             router.push('/');
         } catch (error) {

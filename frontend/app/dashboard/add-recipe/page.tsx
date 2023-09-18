@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation'
+import '../../../axiosConfig'
 
 export default function addRecipe() {
 
@@ -63,7 +64,7 @@ export default function addRecipe() {
         const token = Cookies.get('token');
     
         try {
-            const response = await axios.post('http://localhost:3001/recipes/create', recipe, {
+            const response = await axios.post('/recipes/create', recipe, {
                 headers: {
                     'Authorization': token
                 }

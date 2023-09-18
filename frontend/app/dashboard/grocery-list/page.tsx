@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import '../../../axiosConfig'
 
 export default function MyGroceryList() {
 
@@ -11,7 +12,7 @@ export default function MyGroceryList() {
     useEffect(() => {
         const token = Cookies.get('token');
 
-        axios.get('http://localhost:3001/my-week', {
+        axios.get('/my-week', {
             headers: {
                 'Authorization': token
             }
