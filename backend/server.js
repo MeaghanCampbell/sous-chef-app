@@ -7,7 +7,7 @@ const myWeekRoutes = require('./routes/myWeekRoutes')
 const authenticate = require('./middleware/authenticate');
 const cors = require('cors'); 
 const app = express();
-const port = 3001; 
+const port = process.env.PORT || 3001;
 const sequelize = require('./config/config')
 
 // add { force: true } inside of sync() if you want to drop and recreate tables every time for development
