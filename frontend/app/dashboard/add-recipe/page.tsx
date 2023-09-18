@@ -3,7 +3,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation'
-import '../../../axiosConfig'
 
 export default function addRecipe() {
 
@@ -13,6 +12,12 @@ export default function addRecipe() {
     const [steps, setSteps] = useState(['']);
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
+
+    const apiBaseURL = process.env.NODE_ENV === 'production' ? 'https://souschefapp-backend-560b3e209edf.herokuapp.com' : 'http://localhost:3001';
+
+    const api = axios.create({
+        baseURL: apiBaseURL,
+    });
 
     const handleInputChange = (index, event) => {
     const values = [...ingredients];
@@ -64,7 +69,7 @@ export default function addRecipe() {
         const token = Cookies.get('token');
     
         try {
-            const response = await axios.post('/recipes/create', recipe, {
+            const response = await api.post('/recipes/create', recipe, {
                 headers: {
                     'Authorization': token
                 }

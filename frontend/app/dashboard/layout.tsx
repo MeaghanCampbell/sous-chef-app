@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie';
 import '../../styles/globals.css'
 import NavBar from '../../components/nav';
-import '../../axiosConfig'
 
 export default function DashboardLayout({
     children,

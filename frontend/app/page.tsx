@@ -4,13 +4,18 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie';
-import '../axiosConfig'
 
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
     const router = useRouter()
+
+    const apiBaseURL = process.env.NODE_ENV === 'production' ? 'https://souschefapp-backend-560b3e209edf.herokuapp.com' : 'http://localhost:3001';
+
+    const api = axios.create({
+        baseURL: apiBaseURL,
+    });
 
     const handleLogin = async (e) => {
         setErrorMessage('')
@@ -21,7 +26,7 @@ export default function Login() {
         }
         try {
             const user = { username, password };
-            const response = await axios.post('/users/login', user);
+            const response = await api.post('/users/login', user);
             Cookies.set('token', response.data.token, { expires: 1 });
             router.push('/dashboard');
         } catch (error) {

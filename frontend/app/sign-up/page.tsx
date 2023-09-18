@@ -3,13 +3,18 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
-import '../../axiosConfig'
 
 export default function SignUp() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('')
     const router = useRouter()
+
+    const apiBaseURL = process.env.NODE_ENV === 'production' ? 'https://souschefapp-backend-560b3e209edf.herokuapp.com' : 'http://localhost:3001';
+
+    const api = axios.create({
+        baseURL: apiBaseURL,
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +24,7 @@ export default function SignUp() {
         }
         try {
             const user = { username, password };
-            const response = await axios.post('/users/create', user);
+            const response = await api.post('/users/create', user);
             console.log(response.data)
             router.push('/');
         } catch (error) {

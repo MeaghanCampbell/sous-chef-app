@@ -5,11 +5,16 @@ import Cookies from 'js-cookie';
 import Accordion from '../../components/accordion'
 import { useRouter } from 'next/navigation'
 import axios from 'axios';
-import '../../axiosConfig'
 
 export default function Dashboard() {
 
     const router = useRouter();
+
+    const apiBaseURL = process.env.NODE_ENV === 'production' ? 'https://souschefapp-backend-560b3e209edf.herokuapp.com' : 'http://localhost:3001';
+
+    const api = axios.create({
+        baseURL: apiBaseURL,
+    });
 
     const [accordionData, setAccordionData] = React.useState([
         { title: 'Appetizers & Snacks', recipes: [] },
@@ -32,7 +37,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         const token = Cookies.get('token');
-        axios.get('/recipes', {
+        api.get('/recipes', {
             headers: {
                 'Authorization': token
             }

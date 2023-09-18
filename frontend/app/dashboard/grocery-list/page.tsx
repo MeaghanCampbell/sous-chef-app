@@ -3,16 +3,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import '../../../axiosConfig'
 
 export default function MyGroceryList() {
 
     const [recipes, setRecipes] = useState([]);
 
+    const apiBaseURL = process.env.NODE_ENV === 'production' ? 'https://souschefapp-backend-560b3e209edf.herokuapp.com' : 'http://localhost:3001';
+
+    const api = axios.create({
+        baseURL: apiBaseURL,
+    });
+
     useEffect(() => {
         const token = Cookies.get('token');
 
-        axios.get('/my-week', {
+        api.get('/my-week', {
             headers: {
                 'Authorization': token
             }

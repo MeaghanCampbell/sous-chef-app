@@ -16,10 +16,16 @@ export default function RecipeOpen() {
     let recipeId = params.id
     const token = Cookies.get('token');
 
+    const apiBaseURL = process.env.NODE_ENV === 'production' ? 'https://souschefapp-backend-560b3e209edf.herokuapp.com' : 'http://localhost:3001';
+
+    const api = axios.create({
+        baseURL: apiBaseURL,
+    });
+
     useEffect(() => {
 
         if (recipeId) { // Make sure we have an id before fetching
-            axios.get(`/recipes/${recipeId}`, {
+            api.get(`/recipes/${recipeId}`, {
                 headers: {
                     'Authorization': token
                 }
@@ -40,7 +46,7 @@ export default function RecipeOpen() {
 
     const deleteRecipe = () => {
 
-        axios.delete(`/recipes/${recipeId}`, {
+        api.delete(`/recipes/${recipeId}`, {
             headers: {
                 'Authorization': token
             }
@@ -62,7 +68,7 @@ export default function RecipeOpen() {
 
     const addRecipeToMyWeek = () => {
 
-        axios.post(`/my-week/add`, { recipeId: recipeId }, {
+        api.post(`/my-week/add`, { recipeId: recipeId }, {
             headers: {
                 'Authorization': token
             }

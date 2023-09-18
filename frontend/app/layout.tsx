@@ -1,6 +1,5 @@
 
 import '../styles/globals.css'
-import '../axiosConfig'
 
 export default function RootLayout({
     children,
