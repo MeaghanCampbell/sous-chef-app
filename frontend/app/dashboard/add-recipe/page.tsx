@@ -11,7 +11,7 @@ export default function addRecipe() {
     const [ingredients, setIngredients] = useState([{ quantity: '', name: '' }]);
     const [steps, setSteps] = useState(['']);
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState('Appetizers & Snacks');
 
     const apiBaseURL = process.env.NODE_ENV === 'production' ? 'https://souschefapp-backend-560b3e209edf.herokuapp.com' : 'http://localhost:3001';
 
