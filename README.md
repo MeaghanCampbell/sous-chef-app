@@ -6,7 +6,7 @@ Meet your personal Sous Chef! Create a username, start adding all of your favori
 
 ## Usage
 
-Production app coming soon.
+Production app can be found [here](https://sous-chef-app.vercel.app/).
 Start by signing up, logging in, and start adding recipes!
 
 ## Project Setup
