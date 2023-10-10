@@ -27,7 +27,9 @@ export default function MyWeek() {
             setRecipes(response.data.recipes);
         })
         .catch(error => {
-            console.error(error);
+            if (error.response.status !== 400) {
+                console.error(error);
+            }
         });
     }, []);
 

@@ -16,7 +16,19 @@ export default function Dashboard() {
         baseURL: apiBaseURL,
     });
 
+    api.interceptors.response.use(
+        response => response,
+        error => {
+            if (error.response.status === 400) {
+                Cookies.remove('token');
+                router.push('/');
+            }
+            return Promise.reject(error);
+        }
+    );
+    
     const [accordionData, setAccordionData] = React.useState([
+        { title: 'Breakfast', recipes: [] },
         { title: 'Appetizers & Snacks', recipes: [] },
         { title: 'Drinks', recipes: [] },
         { title: 'Salad', recipes: [] },

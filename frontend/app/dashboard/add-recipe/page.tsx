@@ -11,7 +11,7 @@ export default function addRecipe() {
     const [ingredients, setIngredients] = useState([{ quantity: '', name: '' }]);
     const [steps, setSteps] = useState(['']);
     const [title, setTitle] = useState('');
-    const [category, setCategory] = useState('Appetizers & Snacks');
+    const [category, setCategory] = useState('Breakfast');
 
     const apiBaseURL = process.env.NODE_ENV === 'production' ? 'https://souschefapp-backend-560b3e209edf.herokuapp.com' : 'http://localhost:3001';
 
@@ -95,6 +95,7 @@ export default function addRecipe() {
                         <div className="flex flex-col">
                             <label className="font-semibold" htmlFor="selectMenu">Select Menu</label>
                             <select className="border border-gray-300 px-2 py-1 rounded-md" id="selectMenu" onChange={event => setCategory(event.target.value)}>
+                                <option value="Breakfast">Breakfast</option>
                                 <option value="Appetizers & Snacks">Appetizers & Snacks</option>
                                 <option value="Drinks">Drinks</option>
                                 <option value="Salad">Salad</option>

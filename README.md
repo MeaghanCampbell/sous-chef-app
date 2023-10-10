@@ -4,6 +4,10 @@ Meet your personal Sous Chef! Create a username, start adding all of your favori
 
 ![Github License](https://img.shields.io/badge/license-MIT-green)
 
+
+## Future Development
+There are some features of this app that are still in development. This is a beta test app. A few features that will be added are the users ability to update recipes, add and update categories, and check off items on their grocery list to be added to a section below.
+
 ## Usage
 
 Production app can be found [here](https://sous-chef-app.vercel.app/)
